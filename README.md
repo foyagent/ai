@@ -10,7 +10,7 @@ Agent skills & resources for OpenClaw.
 
 Browser automation recording/replay tool. Generate reusable single-file Playwright scripts through natural language descriptions.
 
-**Version:** 1.4.0
+**Version:** 1.7.0
 
 #### Usage
 
@@ -28,6 +28,13 @@ After opening the page, describe each step in natural language (e.g., "click log
 ```
 Match historical recordings by natural language query, or pass a JSON replay baseline directly. Compares expected results during execution, pauses on mismatch.
 
+**Storage Capture**
+```
+/auto-e2e storage user1 https://example.com/login
+/aee storage admin https://example.com/login append
+```
+Capture login credentials to `auto-e2e/.auth/<name>.json` without generating a script. Use `append` to extend an existing storage-state with additional login flows.
+
 **Alias Binding**
 ```
 /auto-e2e alias login login-flow-script
@@ -44,15 +51,17 @@ Execute script by alias with variable parameters.
 
 - `incognito mode` / `用隐身模式` - Use incognito/private mode
 - `reuse profile <name>` / `复用 profile <name>` - Reuse specified browser profile
-- `reuse login state <path>` / `复用登录态 <path>` - Reuse storage-state file
-- `headless` - Run in headless mode
+- `reuse login state <name>` / `复用登录态 <name>` - Reuse storage-state from `.auth/<name>.json`
+- `headless` / `无头模式` - Run in headless mode
+- `headed` / `有头模式` - Run with visible browser
 
 #### Output
 
 Scripts are saved in `auto-e2e/` directory:
 - `<name>.mjs` - Standalone Playwright script
 - `records/<name>.json` - Recording session log (record mode)
-- `package.json` - Alias metadata
+- `.auth/<name>.json` - Named storage-state files (login credentials)
+- `package.json` - Alias and credential metadata
 
 #### Documentation
 
