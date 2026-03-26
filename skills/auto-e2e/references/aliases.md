@@ -25,7 +25,7 @@ Suggested shape:
     "playwright": "^1.53.0"
   },
   "autoE2E": {
-    "skillVersion": "1.4.0",
+    "skillVersion": "1.7.0",
     "aliases": {
       "提卡": {
         "scriptFile": "auto-e2e/create-card.mjs",
@@ -112,3 +112,61 @@ Example:
 ```
 
 If the user wording could map to more than one variable, ask for clarification instead of guessing.
+
+
+## Richer alias-run examples
+
+Use examples like these to keep parsing stable:
+
+- `/aee 提卡 标题是新品提卡，金额 100`
+  - treat `标题是新品提卡` and `金额 100` as business variables
+- `/aee 提卡 标题是新品提卡，金额 100，用隐身模式`
+  - map runtime to `params.browserRuntime.profileMode = "incognito"`
+- `/aee 提卡 标题是新品提卡，金额 100，复用 profile admin`
+  - map runtime to `params.browserRuntime.profileMode = "persistent"`
+  - if no explicit path is given, use `auto-e2e/profiles/admin`
+- `/aee 提卡 标题是新品提卡，金额 100，复用登录态 auto-e2e/.auth/admin.json`
+  - map runtime to `params.browserRuntime.profileMode = "storageState"`
+  - map `storageStatePath` to the provided path
+- `/aee 提卡 标题是新品提卡，金额 100，复用登录态 user1，不存在就新建`
+  - map runtime to `params.browserRuntime.profileMode = "storageState"`
+  - resolve `storageStatePath` to `auto-e2e/.auth/user1.json`
+  - set `initializeStorageStateIfMissing = true`
+- `/aee 提卡 标题是新品提卡，金额 100，使用凭证 user1`
+  - map runtime to `params.browserRuntime.profileMode = "storageState"`
+  - resolve `storageStatePath` to `auto-e2e/.auth/user1.json`
+- `/aee 提卡 标题是新品提卡，金额 100，无头运行`
+  - map runtime to `params.browserRuntime.headless = true`
+- `/aee 提卡 标题是新品提卡，金额 100，显示浏览器`
+  - map runtime to `params.browserRuntime.headless = false`
+- `/aee 提卡 标题是新品提卡，金额 100，用隐身模式，无头运行`
+  - combine both runtime settings under `params.browserRuntime`
+
+## Parsing rule
+
+When resolving a direct alias invocation:
+- first resolve the alias term to its script;
+- then split the trailing natural language into two buckets:
+  - business variables for the matched script;
+  - browser runtime instructions for `params.browserRuntime`;
+- do not turn runtime phrases into business variables;
+- do not turn business values into runtime fields;
+- if a phrase could belong to either bucket, ask a narrow follow-up question.
+
+## Example final params object
+
+For a script expecting `cardTitle` and `amount`, this input:
+- `/aee 提卡 标题是双十一活动，金额 100，用隐身模式，无头运行`
+
+should produce guidance equivalent to:
+
+```json
+{
+  "cardTitle": "双十一活动",
+  "amount": 100,
+  "browserRuntime": {
+    "profileMode": "incognito",
+    "headless": true
+  }
+}
+```

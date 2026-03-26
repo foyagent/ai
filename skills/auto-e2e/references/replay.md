@@ -20,7 +20,7 @@ Supported baseline shape:
 
 ```json
 {
-  "skillVersion": "1.4.0",
+  "skillVersion": "1.5.0",
   "targetUrl": "https://example.com",
   "scriptFile": "auto-e2e/create-card.mjs",
   "recordFile": "auto-e2e/records/create-card.json",

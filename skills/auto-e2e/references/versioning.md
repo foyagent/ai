@@ -2,7 +2,7 @@
 
 ## Current version
 
-`1.4.0`
+`1.7.0`
 
 ## Required files
 

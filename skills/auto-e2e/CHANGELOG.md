@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.7.0 - 2026-03-26
+- add dedicated storage-capture commands via `/auto-e2e storage <name> <url>` and `/aee storage <name> <url>` for saving login credentials under `auto-e2e/.auth/` without generating a workflow script
+- require an explicit `reset` or `append` decision when a named storage-state file already exists, unless the user already specified one in the command
+- define append behavior as loading the existing readable storage-state file, completing extra login flows, and exporting the merged state back to the same path
+- keep `initializeStorageStateIfMissing` and other 1.5.0 storage-state initialization rules intact
+- treat `使用凭证 <name>` as shorthand for using `auto-e2e/.auth/<name>.json`
+- require generated scripts to default to the credential chosen during recording when the runtime caller does not override it
+- add optional `autoE2E.storageStates` metadata to the workspace package file for named credential bookkeeping
+
+## 1.5.0 - 2026-03-26
+- keep storage-state reuse strict by default and require the file to exist unless the user explicitly asks to initialize it if missing
+- add explicit natural-language support for requests like `复用登录态 user1，不存在就新建` and `没有就初始化一个 user1 登录态`
+- define named login-state resolution to `auto-e2e/.auth/<name>.json` when initialization is requested without an explicit path
+- require real state export after login instead of creating an empty placeholder storage-state file
+- extend recording, alias, replay, and CLI guidance so `initializeStorageStateIfMissing` is part of the supported runtime contract
+
+## 1.4.1 - 2026-03-26
+- clarify alias-run parsing so business variables and browser runtime preferences are separated consistently
+- add richer `/aee <alias> ...` examples covering incognito, persistent profile reuse, storage-state reuse, and headless or headed execution
+- document the expected single `params` object shape for alias invocation with `params.browserRuntime`
+
 ## 1.4.0 - 2026-03-26
 - add browser runtime support for incognito, persistent profile reuse, and storage-state reuse
 - add headless or headed runtime control for live recording guidance and generated scripts

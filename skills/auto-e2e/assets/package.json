@@ -9,7 +9,8 @@
     "install-browser": "npx playwright install chromium"
   },
   "autoE2E": {
-    "skillVersion": "1.4.0",
-    "aliases": {}
+    "skillVersion": "1.7.0",
+    "aliases": {},
+    "storageStates": {}
   }
 }
