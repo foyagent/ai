@@ -10,7 +10,7 @@ Agent skills & resources for any AI assistant.
 
 Browser automation recording/replay tool. Generate reusable single-file Playwright scripts through natural language descriptions.
 
-**Version:** 1.7.0
+**Version:** 2.0.0
 
 #### Usage
 
@@ -33,7 +33,14 @@ Match historical recordings by natural language query, or pass a JSON replay bas
 /auto-e2e storage user1 https://example.com/login
 /aee storage admin https://example.com/login append
 ```
-Capture login credentials to `auto-e2e/.auth/<name>.json` without generating a script. Use `append` to extend an existing storage-state with additional login flows.
+Capture login credentials to `~/.auto-e2e/.auth/<name>.json` without generating a script. Use `append` to extend an existing storage-state with additional login flows.
+
+**Script Management**
+```
+/aee list
+/aee rm login-flow.mjs
+```
+List all saved scripts or remove a specific script.
 
 **Alias Binding**
 ```
@@ -57,7 +64,7 @@ Execute script by alias with variable parameters.
 
 #### Output
 
-Scripts are saved in `auto-e2e/` directory:
+Scripts are saved in `~/.auto-e2e/` directory (shared across agents):
 - `<name>.mjs` - Standalone Playwright script
 - `records/<name>.json` - Recording session log (record mode)
 - `.auth/<name>.json` - Named storage-state files (login credentials)

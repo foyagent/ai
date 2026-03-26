@@ -10,7 +10,7 @@
 
 浏览器自动化录制/回放工具。通过自然语言描述操作步骤，自动生成可复用的单文件 Playwright 脚本。
 
-**版本：** 1.7.0
+**版本：** 2.0.0
 
 #### 使用方式
 
@@ -33,7 +33,14 @@
 /auto-e2e storage user1 https://example.com/login
 /aee storage admin https://example.com/login append
 ```
-将登录凭证保存到 `auto-e2e/.auth/<name>.json`，不生成脚本。使用 `append` 可在现有凭证基础上扩展其他登录流程。
+将登录凭证保存到 `~/.auto-e2e/.auth/<name>.json`，不生成脚本。使用 `append` 可在现有凭证基础上扩展其他登录流程。
+
+**脚本管理**
+```
+/aee list
+/aee rm login-flow.mjs
+```
+列出所有已保存的脚本，或删除指定脚本。
 
 **别名绑定**
 ```
@@ -57,7 +64,7 @@
 
 #### 输出
 
-脚本保存在 `auto-e2e/` 目录下：
+脚本保存在 `~/.auto-e2e/` 目录下（跨 Agent 共享）：
 - `<name>.mjs` - 可独立运行的 Playwright 脚本
 - `records/<name>.json` - 录制会话记录（record 模式）
 - `.auth/<name>.json` - 命名的登录态文件（凭证）
