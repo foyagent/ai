@@ -1,6 +1,6 @@
 # AI
 
-OpenClaw 的 Agent 技能与资源。
+通用 Agent 技能与资源。
 
 [English](README.md)
 

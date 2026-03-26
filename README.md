@@ -1,6 +1,6 @@
 # AI
 
-Agent skills & resources for OpenClaw.
+Agent skills & resources for any AI assistant.
 
 [中文文档](README.zh-CN.md)
 
