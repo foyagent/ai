@@ -1,0 +1,3 @@
+interface:
+  display_name: "Auto E2E"
+  short_description: "Record or replay browser steps into a reusable Playwright script"
