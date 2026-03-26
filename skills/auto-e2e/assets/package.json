@@ -7,5 +7,9 @@
   },
   "scripts": {
     "install-browser": "npx playwright install chromium"
+  },
+  "autoE2E": {
+    "skillVersion": "1.4.0",
+    "aliases": {}
   }
 }

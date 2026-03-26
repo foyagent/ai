@@ -1,83 +1,109 @@
 # Replay Rules
 
-## Purpose
+## Trigger shapes
 
-Replay mode lets the user reuse a previously saved record as a verification baseline.
-
-Command forms:
+Recognize:
 - `/auto-e2e replay <query>`
 - `/aee replay <query>`
+- `/auto-e2e replay { ...json... }`
+- `/aee replay { ...json... }`
 
-The query is natural language. Use it to find the most relevant record JSON under `auto-e2e/records/`.
+The replay argument can therefore be either:
+- ordinary natural language used to search prior records;
+- a direct JSON object that already contains the replay baseline.
 
-## Matching strategy
+## Direct JSON replay
 
-Rank candidate records using a combination of:
-1. query similarity to the script basename;
-2. query similarity to the `targetUrl` hostname or path;
-3. query similarity to notable user instructions in `messages`;
-4. query similarity to notable agent replies in `messages`.
+When the replay argument starts with `{`, attempt to parse it as JSON.
 
-Prefer the record that best matches the overall workflow intent, not just one repeated word.
+Supported baseline shape:
 
-If exactly one record is clearly best, select it automatically.
+```json
+{
+  "skillVersion": "1.4.0",
+  "targetUrl": "https://example.com",
+  "scriptFile": "auto-e2e/create-card.mjs",
+  "recordFile": "auto-e2e/records/create-card.json",
+  "variables": [],
+  "returnSpec": {},
+  "browserRuntime": {
+    "profileMode": "incognito",
+    "headless": false
+  },
+  "messages": []
+}
+```
 
-If there are several strong candidates with no clear winner:
-- show a short list with basename and target URL;
-- ask the user which one to replay.
+Required fields for direct replay:
+- `targetUrl`: non-empty string
+- `messages`: non-empty array
 
-If no candidate is good enough, say that no matching record was found.
+Optional but useful fields:
+- `skillVersion`
+- `scriptFile`
+- `recordFile`
+- `variables`
+- `returnSpec`
+- `browserRuntime`
 
-## Replay workflow
+Rules:
+- if parsing fails, ask the user to send valid JSON;
+- if required fields are missing, ask the user to supply them;
+- do not search `auto-e2e/records/` when a valid inline replay JSON payload was provided;
+- if `browserRuntime` exists in the payload, use it as the initial replay runtime unless the user explicitly overrides it in the current command.
 
-After selecting a record:
-1. load the record JSON;
-2. open `targetUrl` from the record;
-3. explain briefly that replay mode is active and which record was matched;
-4. use the prior saved conversation as guidance while the user drives the new run;
-5. build a fresh current `stepQueue` from the new run;
-6. compare each new step outcome against the old expected outcome.
+## Natural-language replay search
 
-## What to compare
+When the replay argument is normal text:
+1. search saved files under `auto-e2e/records/`;
+2. rank candidates by semantic closeness to the user's query;
+3. prefer clearer, more specific matches;
+4. if one result clearly wins, use it;
+5. if several are plausible, show a short candidate list and ask the user to choose.
 
-Use the prior assistant reply for the corresponding step as the expected outcome signal.
+## Replay guidance source
 
-Compare semantically, not literally.
+Once a replay baseline is selected, use it as a guide for the new run.
 
-Examples:
-- Old reply: “已点击登录按钮并进入仪表盘”
-  - Good current outcome: dashboard is visible after click.
-  - Bad current outcome: still on login form with an error banner.
+Relevant guidance inputs can include:
+- prior user messages;
+- prior assistant replies;
+- variable declarations;
+- return expectations;
+- prior runtime settings.
 
-- Old reply: “已搜索关键词 手机，共看到结果列表”
-  - Good current outcome: a results list for 手机 is visible.
-  - Bad current outcome: empty state or a different page opens.
+Do not treat the old record as unchangeable truth. Use it as a behavioral baseline while still following the user's current instructions.
 
-When possible, use current browser evidence first:
-- visible headings
-- dialogs
-- form state
-- URL change
-- result list presence
-- success or error notifications
+## Mismatch handling
 
-Use text similarity to the old assistant reply only as a secondary hint.
+After each replayed step, compare the current outcome against the prior expected result.
 
-## Mismatch policy
+If the current outcome and the prior result are semantically aligned:
+- continue;
+- advance the replay cursor.
 
-If the current outcome conflicts with the expected outcome from the matched record:
-1. pause immediately;
-2. explain the mismatch briefly;
-3. ask the user whether to continue, correct the step, or stop.
+If they differ materially:
+- pause;
+- explain the mismatch briefly;
+- ask the user whether to continue, revise, or stop.
 
-Example mismatch prompt:
-- “The previous record expected the dashboard to open after this click, but the current page still shows the login form. Do you want to continue, adjust this step, or stop?”
+Examples of meaningful mismatch:
+- button text differs and changes the workflow;
+- a page transition happened earlier or later than before;
+- the previous agent reply expected a success state but the current page shows an error;
+- the current result contradicts a prior extracted value.
 
-Do not silently continue after a clear mismatch.
+## Message comparison guidance
 
-If the mismatch is user-confirmed and the run continues:
-- record that divergence in the current session summary;
-- continue building the new script from the user-approved current behavior.
+When using prior agent replies for validation, compare meaning rather than wording.
+
+Treat these as acceptable matches:
+- “clicked submit and moved to confirmation” vs “submit worked and the confirmation page appeared”
+- “filled search box with 手机” vs “entered 手机 into the search input”
+
+Treat these as mismatches:
+- “modal opened” vs “page navigated away”
+- “login succeeded” vs “still on login page with error message”
 
 ## Completion
 

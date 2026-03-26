@@ -2,7 +2,7 @@
 
 ## Current version
 
-`1.1.0`
+`1.4.0`
 
 ## Required files
 
@@ -11,6 +11,7 @@ Keep the skill version synchronized in all of these places:
 - `CHANGELOG.md`
 - the version callout near the top of `SKILL.md`
 - any example record JSON that exposes `skillVersion`
+- any example alias metadata that exposes `autoE2E.skillVersion`
 
 ## Semantic version policy
 
