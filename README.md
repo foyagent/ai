@@ -2,56 +2,58 @@
 
 Agent skills & resources for OpenClaw.
 
+[中文文档](README.zh-CN.md)
+
 ## Skills
 
 ### auto-e2e
 
-浏览器自动化录制/回放工具。通过自然语言描述操作步骤，自动生成可复用的单文件 Playwright 脚本。
+Browser automation recording/replay tool. Generate reusable single-file Playwright scripts through natural language descriptions.
 
-**版本：** 1.4.0
+**Version:** 1.4.0
 
-#### 使用方式
+#### Usage
 
-**录制模式**
+**Record Mode**
 ```
 /auto-e2e https://example.com
 /aee https://example.com record
 ```
-打开页面后，用自然语言描述每一步操作（如"点击登录按钮"、"输入用户名 xxx"），Agent 会执行并记录。支持撤销上一步、提取变量、设置返回数据。
+After opening the page, describe each step in natural language (e.g., "click login button", "enter username xxx"). Agent executes and records. Supports undo, variable extraction, and return data specification.
 
-**回放模式**
+**Replay Mode**
 ```
-/auto-e2e replay 登录流程
+/auto-e2e replay login flow
 /aee replay { "targetUrl": "...", "messages": [...] }
 ```
-根据自然语言查询匹配历史录制，或直接传入 JSON 回放基线。执行时会对比预期结果，不一致则暂停询问。
+Match historical recordings by natural language query, or pass a JSON replay baseline directly. Compares expected results during execution, pauses on mismatch.
 
-**别名绑定**
+**Alias Binding**
 ```
-/auto-e2e alias login 登录流程脚本
+/auto-e2e alias login login-flow-script
 ```
-为已生成的脚本绑定简短别名，方便后续调用。
+Bind a short alias to a generated script for easy invocation.
 
-**别名调用**
+**Alias Invocation**
 ```
-/auto-e2e login 用户名 test@example.com
+/auto-e2e login username test@example.com
 ```
-直接用别名执行脚本，支持传入变量参数。
+Execute script by alias with variable parameters.
 
-#### 浏览器运行时选项
+#### Browser Runtime Options
 
-- `用隐身模式` - 使用隐身/无痕模式
-- `复用 profile <name>` - 复用指定的浏览器配置
-- `复用登录态 <path>` - 复用 storage-state 文件
-- `headless` - 无头模式运行
+- `incognito mode` / `用隐身模式` - Use incognito/private mode
+- `reuse profile <name>` / `复用 profile <name>` - Reuse specified browser profile
+- `reuse login state <path>` / `复用登录态 <path>` - Reuse storage-state file
+- `headless` - Run in headless mode
 
-#### 输出
+#### Output
 
-脚本保存在 `auto-e2e/` 目录下：
-- `<name>.mjs` - 可独立运行的 Playwright 脚本
-- `records/<name>.json` - 录制会话记录（record 模式）
-- `package.json` - 别名元数据
+Scripts are saved in `auto-e2e/` directory:
+- `<name>.mjs` - Standalone Playwright script
+- `records/<name>.json` - Recording session log (record mode)
+- `package.json` - Alias metadata
 
-#### 文档
+#### Documentation
 
-详见 [skills/auto-e2e/SKILL.md](skills/auto-e2e/SKILL.md)
+See [skills/auto-e2e/SKILL.md](skills/auto-e2e/SKILL.md)
