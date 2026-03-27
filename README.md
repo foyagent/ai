@@ -10,7 +10,7 @@ Agent skills & resources for any AI assistant.
 
 Browser automation recording/replay tool. Generate reusable single-file Playwright scripts through natural language descriptions.
 
-**Version:** 2.2.0
+**Version:** 2.2.1
 
 #### Usage
 
