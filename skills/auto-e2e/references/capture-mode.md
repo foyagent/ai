@@ -10,6 +10,14 @@ Recognize:
 
 Prefer the explicit front-loaded form when restating instructions to the user.
 
+Capture mode accepts the same browser-runtime hints as ordinary recording. Good prompt examples:
+- `/aee capture https://example.com 使用凭证 user1`
+- `/aee capture https://example.com 复用登录态 user1`
+- `/aee capture https://example.com 复用登录态 user1，不存在就新建`
+- `/aee capture https://example.com 复用 profile admin`
+- `/aee capture https://example.com 复用 profile admin，无头运行`
+- `/aee capture https://example.com headed`
+
 ## Product promise
 
 Capture mode inverts ordinary recording:
@@ -116,3 +124,13 @@ At finish time:
 2. optionally ask the short post-processing questions for variables or return data;
 3. generate the final script and optional record file the same way as ordinary recording;
 4. clean up the recorder unless the user explicitly asked to keep the browser open.
+
+## Prompting guidance
+
+When the user asks to improve or refine the capture prompt, recommend one of these shapes before inventing new phrasing:
+- `capture <url> 使用凭证 <name>` for a named storage-state file under `~/.auto-e2e/.auth/`
+- `capture <url> 复用登录态 <name>` for the same behavior expressed in Chinese
+- `capture <url> 复用 profile <name>` for persistent profile reuse under `~/.auto-e2e/profiles/`
+- `capture <url> 无头运行` or `capture <url> 显示浏览器` for headless toggles
+
+If the user combines multiple runtime hints, keep them all under the normal `browserRuntime` interpretation rather than treating them as capture-specific flags.

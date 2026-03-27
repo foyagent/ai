@@ -7,7 +7,7 @@ description: record, replay, manage, and run browser workflows as reusable singl
 
 ## Version
 
-Current skill version: `2.2.0`.
+Current skill version: `2.2.1`.
 
 For every future edit to this skill, bump the semantic version and update both:
 - `VERSION`
@@ -27,7 +27,7 @@ Read these references when needed:
 - [references/aliases.md](references/aliases.md) for alias binding, package.json storage, ambiguity handling, and direct alias invocation.
 - [references/script-management.md](references/script-management.md) for `/aee list` and `/aee rm`.
 - [references/storage-states.md](references/storage-states.md) for `/aee storage <name> ...`, reset, append, and credential defaults.
-- [references/capture-mode.md](references/capture-mode.md) for the observed capture flow where the user acts directly in the browser and the recorder emits step summaries.
+- [references/capture-mode.md](references/capture-mode.md) for the observed capture flow where the user acts directly in the browser, including capture with named credentials, storage-state reuse, profiles, and headless options.
 - [assets/package.json](assets/package.json) for the default shared-root package file that must exist under `~/.auto-e2e` and hold alias and storage metadata.
 - [scripts/live_recorder.mjs](scripts/live_recorder.mjs) for the bundled thin recorder that must drive all live recording, replay, and storage capture sessions.
 
@@ -77,6 +77,13 @@ Recognize these command families:
 - `/auto-e2e rm <file>.mjs` or `/aee rm <file>.mjs` for removing a saved script.
 - `/auto-e2e <alias-term> ...` or `/aee <alias-term> ...` for direct alias invocation.
 
+Use these example prompt shapes when they match the user request:
+- `/aee capture https://example.com 使用凭证 user1`
+- `/aee capture https://example.com 复用登录态 user1，不存在就新建`
+- `/aee capture https://example.com 复用 profile admin，无头运行`
+- `/aee capture https://example.com headed`
+- `/aee https://example.com capture 使用凭证 qa-admin`
+
 Before a live session begins:
 1. ensure the shared root `~/.auto-e2e/` exists;
 2. if the flow is a storage capture, call the recorder-side storage inspection logic first or be ready to handle a hard `storage_decision_required` error when the named file already exists;
@@ -122,6 +129,8 @@ When the initial command includes `capture`, invert the normal recording flow:
 - per-step chat updates are best effort only and should not be described as guaranteed.
 
 In capture mode, do not wait for a natural-language step message before updating `stepQueue`. Instead, consume the recorder's observed step feed.
+
+When a capture command also includes runtime hints such as `使用凭证 user1`, `复用登录态 user1`, `复用 profile admin`, `无头运行`, or `显示浏览器`, parse them exactly the same way as ordinary recording. Capture mode does not get a separate runtime system.
 
 ## Step recording rules
 

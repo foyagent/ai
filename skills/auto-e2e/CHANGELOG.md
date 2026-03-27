@@ -1,3 +1,8 @@
+## 2.2.1 - 2026-03-27
+- clarify prompt wording and trigger examples for capture mode with named credentials, storage-state reuse, profile reuse, and headless or headed execution
+- document that capture mode uses the same browserRuntime parsing as ordinary recording and replay
+- improve UI metadata wording to better signal shared credentials and profiles
+
 # Changelog
 
 ## 2.2.0 - 2026-03-27

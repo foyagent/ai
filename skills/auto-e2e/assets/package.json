@@ -9,7 +9,7 @@
     "install-browser": "npx playwright install chromium"
   },
   "autoE2E": {
-    "skillVersion": "2.2.0",
+    "skillVersion": "2.2.1",
     "rootDir": "~/.auto-e2e",
     "aliases": {},
     "storageStates": {}

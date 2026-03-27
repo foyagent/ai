@@ -133,3 +133,15 @@ For all runtime file paths:
 - expand `~` first;
 - resolve relative paths against `~/.auto-e2e`;
 - never resolve storage or profile paths against the current shell working directory.
+
+## Capture-mode parity
+
+Capture mode uses the exact same runtime parsing as ordinary recording, replay, and alias invocation.
+
+Examples:
+- `/aee capture https://example.com 使用凭证 user1`
+- `/aee capture https://example.com 复用登录态 user1，不存在就新建`
+- `/aee capture https://example.com 复用 profile admin，无头运行`
+- `/aee capture https://example.com 显示浏览器`
+
+Do not tell users that capture mode cannot use credentials, profiles, or storage-state initialization. It can.
