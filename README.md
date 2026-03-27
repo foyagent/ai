@@ -10,7 +10,7 @@ Agent skills & resources for any AI assistant.
 
 Browser automation recording/replay tool. Generate reusable single-file Playwright scripts through natural language descriptions.
 
-**Version:** 2.0.0
+**Version:** 2.2.0
 
 #### Usage
 
@@ -20,6 +20,13 @@ Browser automation recording/replay tool. Generate reusable single-file Playwrig
 /aee https://example.com record
 ```
 After opening the page, describe each step in natural language (e.g., "click login button", "enter username xxx"). Agent executes and records. Supports undo, variable extraction, and return data specification.
+
+**Capture Mode**
+```
+/auto-e2e capture https://example.com
+/aee capture https://example.com
+```
+In capture mode, you operate the browser directly. The recorder observes your actions and converts them into reusable steps. No need to narrate each step in chat. Supports click, fill, select, check, key press, and navigation.
 
 **Replay Mode**
 ```
