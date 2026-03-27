@@ -22,7 +22,7 @@ Suggested alias metadata shape:
 ```json
 {
   "autoE2E": {
-    "skillVersion": "2.0.0",
+    "skillVersion": "2.0.1",
     "aliases": {
       "提卡": {
         "scriptFile": "~/.auto-e2e/create-card.mjs",

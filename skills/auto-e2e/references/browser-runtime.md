@@ -125,3 +125,11 @@ Example:
 ```bash
 node create-card.mjs '{"cardTitle":"新品提卡","browserRuntime":{"profileMode":"storageState","storageStatePath":"~/.auto-e2e/.auth/user1.json","initializeStorageStateIfMissing":true,"headless":false}}'
 ```
+
+
+## Shared-root resolution
+
+For all runtime file paths:
+- expand `~` first;
+- resolve relative paths against `~/.auto-e2e`;
+- never resolve storage or profile paths against the current shell working directory.
