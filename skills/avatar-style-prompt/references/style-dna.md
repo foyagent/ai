@@ -15,6 +15,8 @@ It sits in a narrow middle zone:
 
 The references are cohesive because they balance cute and cool. They feel like profile avatars for young adults, not dolls, not children, and not runway photography.
 
+They are also not sterile. Several references use one clear personal styling accent such as a hat, sunglasses, or earrings. That small accent is part of the family look and should not be removed by over-simplifying.
+
 ## Stable visual traits
 
 ### 1. Rendering medium
@@ -58,6 +60,9 @@ The references are cohesive because they balance cute and cool. They feel like p
 - Accessories are often the strongest identity marker.
 - Accessories can be slightly bold or oversized, but the result should still feel like a profile portrait rather than a toy costume.
 - The feeling is casual stylish avatar, not editorial fashion pose and not corporate stock icon.
+- Preserve one tasteful styling accent whenever possible.
+- Good accent types in this family include hats, glasses, sunglasses, simple earrings, a subtle necklace, a tiny hair accessory, or one clean tech/fashion item.
+- Keep accents readable but limited. Do not pile on props.
 
 ### 6. Camera and crop
 - One subject only.
@@ -73,85 +78,26 @@ The references are cohesive because they balance cute and cool. They feel like p
 - Do not use gradients.
 - No room, scenery, furniture, particles, or story environment.
 - Background tones stay pale and quiet.
-- If a provided screenshot appears circular, treat that circle as a platform crop artifact rather than part of the artwork.
-- Avoid graphic discs, halos, portals, or badge-like shapes.
+- If a provided screenshot appears circular, treat that circle as a platform crop artifact, not as part of the original composition.
 
-### 8. Lighting
-- Soft, even, low-contrast portrait lighting.
-- Gentle key and fill.
-- Mild rim separation only.
-- Avoid dramatic shadow carving.
-- Avoid glossy beauty-shot specular streaks.
-- Avoid dark vignette or cinematic mood.
+### 8. Lighting and materials
+- Soft portrait lighting.
+- Low contrast.
+- Controlled highlights.
+- No dramatic rim lighting, no cinematic shadows, no glossy beauty-ad shine.
+- Skin reads smooth and softly lit.
+- Hair reads satin-matte.
+- Clothing reads simplified and secondary.
+- Accessories may carry a slightly stronger color accent or material accent, but should still stay clean and stylized.
 
-### 9. Material finish
-- Skin: soft satin or porcelain-like smoothness.
-- Hair: satin-matte with controlled highlights.
-- Glasses: clean semi-gloss plastic or resin frames.
-- Fabric: reduced texture, just enough to read the garment.
-- Final look: polished stylized character portrait.
+## Exclusions
 
-### 10. Output cleanliness
-- Treat the avatar as outward-facing artwork, suitable for public profiles and presentations.
-- Do not include watermarks, ai-generated labels, signatures, logos, captions, timestamps, or any platform UI.
-- Do not place any text inside the frame unless the user explicitly asks for it.
-
-## Reference-specific observations that matter
-
-The six references share a few important constraints that many models miss unless told explicitly:
-
-1. They are stylish, but not glamorous.
-2. They are youthful, but not childlike.
-3. The body is de-emphasized, but still human rather than toy-like.
-4. Hair is simplified into design shapes, but remains soft and contemporary.
-5. Faces are simplified, but still have eyelids, irises, and mild facial structure.
-6. Even the sunglasses example still reads as a social-profile avatar, not a fashion photo and not a figurine.
-
-## What varies across the six references
-
-These traits can change without breaking the house style:
-- hair color and haircut
-- eyewear type
-- hat or no hat
-- gender presentation
-- top color and garment category
-- pastel background hue
-- expression from mild smile to cool neutral
-- accessory emphasis
-
-## What must stay stable
-
-These traits should stay stable across outputs:
-- youthful stylized 3D portrait language
-- head-prominent framing with high crop
-- simplified but not babyish face construction
-- short-to-moderate neck
-- restrained shoulders
-- sculpted soft hair clumps
-- minimal clothing detail
-- clean solid pastel full-frame background
-- soft low-contrast lighting
-- polished social-avatar finish
-- watermark-free, text-free final image
-
-## Failure modes to avoid
-
-The following are common drifts and are wrong for this set:
-
-- beauty-render heroine
-- fashion-doll glamour portrait
-- hyper-real skin and hair
-- editorial sunglasses shoot
+Do not drift toward:
+- photorealistic fashion portrait
+- cosmetic beauty render
 - toy figurine or vinyl doll
-- mascot or chibi app icon
-- low-poly or blocky clay character
-- full bust with emphasized clothing and body
-- luxury cosmetics ad look
-- over-sharp jawline and long neck
-- hyper-detailed fabric and makeup
-- perfectly front-facing corporate ID icon
-- ai watermark, logo, signature, caption, or platform overlay
-
-## Compact reminder sentence
-
-"A youthful stylized 3D social-profile avatar portrait with a prominent head, high shoulder crop, slightly enlarged natural eyes, tiny sculpted nose, small mouth, soft stylish hair clumps, minimal outfit detail, soft low-contrast lighting, one clean solid pastel full-frame background, and a watermark-free text-free final frame."
+- low-poly mascot
+- clay chibi icon
+- corporate stock-avatar plainness
+- over-decorated costume character
+- noisy or scenic background

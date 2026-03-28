@@ -8,6 +8,7 @@ Catch the most common failure modes:
 - the model produces a glamour beauty portrait
 - the model produces a toy or mascot-like icon
 - the model produces a low-poly clay character
+- the model produces an overly plain corporate contact-card avatar with no personality accent
 - the model adds watermark, ai labels, logos, or text overlays
 
 ## Audit questions
@@ -48,18 +49,23 @@ Catch the most common failure modes:
    - Does the prompt request soft even low-contrast portrait lighting and forbid dramatic shadows?
    - If not, add it.
 
-9. **Toy/glamour exclusion test**
+9. **Styling-accent test**
+   - Does the prompt preserve a clearly stated accessory or add one subtle personality accent when the avatar would otherwise feel too plain?
+   - If not, add one tasteful accent.
+   - If the prompt piles on many accessories or feels costume-like, reduce it back to one clear accent.
+
+10. **Toy/glamour exclusion test**
    - Does the prompt explicitly say not toy-like, not chibi, not low-poly, and not glamorous?
    - If not, add those exclusions in either the main prompt or negative prompt.
 
-10. **Negative prompt test**
-   - Does the negative prompt explicitly block beauty render, fashion editorial, realistic hair strands, long neck, broad shoulders, toy figurine, vinyl doll, mascot, chibi, low poly, clay render, black button eyes, watermark, ai badge, logo, signature, and text overlay?
+11. **Negative prompt test**
+   - Does the negative prompt explicitly block beauty render, fashion editorial, realistic hair strands, long neck, broad shoulders, toy figurine, vinyl doll, mascot, chibi, low poly, clay render, black button eyes, cluttered accessories, watermark, ai badge, logo, signature, and text overlay?
    - If not, add them.
 
-11. **Clean-frame test**
+12. **Clean-frame test**
    - Does the prompt clearly ask for a clean outward-facing final image with no watermark, no ai-generated label, no logo, no signature, and no UI chrome?
    - If not, add that constraint.
 
 ## Pass condition
 
-Only answer after the prompt would clearly generate something closer to the six-reference social-profile avatar family than to a beauty render, a corporate icon, or a toy mascot, and would likely produce a clean watermark-free outward-facing image.
+Only answer after the prompt would clearly generate something closer to the six-reference social-profile avatar family than to a beauty render, a corporate icon, or a toy mascot, while still preserving one tasteful styling accent and likely producing a clean watermark-free outward-facing image.
