@@ -80,3 +80,22 @@ Scripts are saved in `~/.auto-e2e/` directory (shared across agents):
 #### Documentation
 
 See [skills/auto-e2e/SKILL.md](skills/auto-e2e/SKILL.md)
+
+### avatar-style-prompt
+
+Generate detailed, model-agnostic image prompts for chest-up avatar portraits that match a fixed six-reference visual style. Ensures consistency across different image agents with anti-drift constraints.
+
+**Usage**
+
+Provide a character or person description to get a prompt that stays within the bundled youthful stylized 3D social-profile avatar family.
+
+**Output includes:**
+- Universal prompt (cross-model compatible)
+- Negative prompt
+- Style lock bullets
+- Anti-drift suffix
+- Chinese gloss (if input is Chinese)
+
+#### Documentation
+
+See [skills/avatar-style-prompt/SKILL.md](skills/avatar-style-prompt/SKILL.md)

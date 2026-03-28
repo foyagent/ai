@@ -80,3 +80,22 @@
 #### 文档
 
 详见 [skills/auto-e2e/SKILL.md](skills/auto-e2e/SKILL.md)
+
+### avatar-style-prompt
+
+生成详细的、跨模型兼容的头像肖像提示词，保持与六张参考图一致的视觉风格。通过防漂移约束确保跨不同图像生成器的一致性。
+
+**使用方式**
+
+提供角色或人物描述，获得与内置年轻化风格 3D 社交头像家族保持一致的提示词。
+
+**输出包含：**
+- 通用提示词（跨模型兼容）
+- 负面提示词
+- 风格锁定要点
+- 防漂移后缀
+- 中文说明（如输入为中文）
+
+#### 文档
+
+详见 [skills/avatar-style-prompt/SKILL.md](skills/avatar-style-prompt/SKILL.md)
