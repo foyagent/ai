@@ -99,3 +99,22 @@ Provide a character or person description to get a prompt that stays within the 
 #### Documentation
 
 See [skills/avatar-style-prompt/SKILL.md](skills/avatar-style-prompt/SKILL.md)
+
+### mutli-feishu-agent
+
+Manage OpenClaw Feishu independent agents - create, activate, troubleshoot, and delete. Automatically generates agent IDs from names (Chinese → pinyin), handles configuration backup, account binding, and owner identification.
+
+**Usage**
+
+Provide `name`, `app_id`, `app_secret`, optional `agent_id` and `workspace_path` to create a new Feishu agent. The agent ID is auto-generated from the name if not provided.
+
+**Features:**
+- Auto-generate agent_id from Chinese/English names
+- Backup openclaw.json before changes
+- Bind feishu account and collect owner `ou_` from first message
+- Add owner to `allowFrom` and `groupAllowFrom`
+- No restart by default - verify first, only reload if needed
+
+#### Documentation
+
+See [skills/mutli-feishu-agent/SKILL.md](skills/mutli-feishu-agent/SKILL.md)

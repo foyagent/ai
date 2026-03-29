@@ -99,3 +99,22 @@
 #### 文档
 
 详见 [skills/avatar-style-prompt/SKILL.md](skills/avatar-style-prompt/SKILL.md)
+
+### mutli-feishu-agent
+
+OpenClaw 飞书独立 Agent 管理工具 - 创建、激活、排查和删除。支持从名称自动生成 agent_id（中文→拼音），自动处理配置备份、账号绑定和 owner 标识收集。
+
+**使用方式**
+
+提供 `name`、`app_id`、`app_secret`，可选 `agent_id` 和 `workspace_path` 来创建新的飞书 Agent。如未提供 agent_id，会自动根据名称生成。
+
+**功能：**
+- 中文名称自动转拼音生成 agent_id
+- 修改配置前自动备份 openclaw.json
+- 绑定飞书账号，从第一条消息收集 owner `ou_`
+- 自动添加 owner 到 `allowFrom` 和 `groupAllowFrom`
+- 默认不重启 - 先验证配置，未生效才重载
+
+#### 文档
+
+详见 [skills/mutli-feishu-agent/SKILL.md](skills/mutli-feishu-agent/SKILL.md)
