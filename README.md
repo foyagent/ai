@@ -110,10 +110,11 @@ Provide `name`, `app_id`, `app_secret`, optional `agent_id` and `workspace_path`
 
 **Features:**
 - Auto-generate agent_id from Chinese/English names
-- Backup openclaw.json before changes
-- Bind feishu account and collect owner `ou_` from first message
-- Add owner to `allowFrom` and `groupAllowFrom`
-- No restart by default - verify first, only reload if needed
+- Single restart during creation (stable flow)
+- Uses temporary BOOT.md block for post-restart handoff
+- Auto-extract owner `ou_` and pairing code from logs/messages
+- Auto-approve pairing and configure allowFrom/groupAllowFrom
+- Verify after pairing without second restart
 
 #### Documentation
 
