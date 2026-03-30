@@ -15,7 +15,7 @@ It sits in a narrow middle zone:
 
 The references are cohesive because they balance cute and cool. They feel like profile avatars for young adults, not dolls, not children, and not runway photography.
 
-They are also not sterile. Several references use one clear personal styling accent such as a hat, sunglasses, or earrings. Hair variation is also part of the family look; not everyone should collapse into black hair plus the same haircut.
+They are also not sterile. Several references use one clear personal styling accent such as a hat, sunglasses, or earrings. That small accent is part of the family look and should not be removed by over-simplifying.
 
 ## Stable visual traits
 
@@ -52,8 +52,6 @@ They are also not sterile. Several references use one clear personal styling acc
 - Avoid realistic flyaways and salon strands.
 - Avoid hard-edged blocky slabs that make the result look low-poly.
 - Avoid helmet hair.
-- Vary haircuts and hair colors across characters when the subject supports it.
-- Favor natural or softly stylized hair colors that harmonize with the character mood.
 
 ### 5. Styling language
 - Styling is modern and youthful.
@@ -92,11 +90,6 @@ They are also not sterile. Several references use one clear personal styling acc
 - Clothing reads simplified and secondary.
 - Accessories may carry a slightly stronger color accent or material accent, but should still stay clean and stylized.
 
-### 9. Output cleanliness
-- Treat the avatar as outward-facing artwork, suitable for public profiles and presentations.
-- Do not include watermarks, ai-generated labels, signatures, logos, captions, timestamps, or platform UI.
-- Do not place any text inside the frame unless the user explicitly asks for it.
-
 ## Exclusions
 
 Do not drift toward:
@@ -108,5 +101,3 @@ Do not drift toward:
 - corporate stock-avatar plainness
 - over-decorated costume character
 - noisy or scenic background
-- repeated black-hair default for every subject
-- repeated one-size-fits-all male haircut
