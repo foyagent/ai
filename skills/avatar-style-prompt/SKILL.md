@@ -1,40 +1,41 @@
 ---
 name: avatar-style-prompt
-description: generate detailed, model-agnostic image prompts for chest-up avatar portraits that match a fixed six-reference visual style. use when a user provides a character or person description and wants a prompt that stays in the same youthful stylized 3d social-profile avatar family as the bundled references, with matched face design, hair treatment, framing, lighting, clean background treatment, and anti-drift constraints across different image agents.
+description: generate detailed, model-agnostic prompts for youthful stylized 3d social-profile avatar portraits that match a fixed six-reference family. use when a user gives a character or person description and wants a consistent outward-facing avatar prompt with coordinated face design, hair treatment, framing, lighting, solid pastel background, subtle personality accents, adaptive hair color and hairstyle selection, and anti-drift constraints.
 ---
 
 # Avatar Style Prompt
 
-Generate avatar prompts that stay inside the bundled six-reference house style.
-
-The user gives you a person description. Preserve only the subject identity cues while keeping the result visually compatible with the same reference set.
+Generate prompts that stay inside the bundled six-reference house style while preserving character individuality.
 
 ## Workflow
 
 1. Extract only identity-bearing traits from the user description:
    - age impression
    - gender presentation if stated
-   - hairstyle and hair color
-   - skin tone
+   - personality or vibe words
+   - hairstyle and hair color if stated
+   - skin tone if stated
    - expression or mood
    - eyewear
    - one clothing cue
-   - one standout accessory
+   - one standout accessory or style accent
 2. Load the fixed style constraints from [references/style-dna.md](references/style-dna.md).
-3. If the target image system supports image references, treat [assets/reference-sheet.jpeg](assets/reference-sheet.jpeg) as the primary visual anchor and tell the user to attach it when possible.
-4. Build the prompt using [references/prompt-blueprint.md](references/prompt-blueprint.md).
-5. Run the drift audit from [references/drift-audit.md](references/drift-audit.md).
-6. Output the final prompt only after the drift audit passes.
+3. Use [references/hair-guidance.md](references/hair-guidance.md) whenever hair color or hairstyle is missing, generic, or under-specified.
+4. If the image system supports image references, treat [assets/reference-sheet.jpeg](assets/reference-sheet.jpeg) as the primary visual anchor and tell the user to attach it when possible.
+5. Build the prompt using [references/prompt-blueprint.md](references/prompt-blueprint.md).
+6. Run the drift audit from [references/drift-audit.md](references/drift-audit.md).
+7. Output the final prompt only after the drift audit passes.
 
 ## Core instruction
 
 Do not describe a generic beautiful 3d character, a toy figurine, or a cute app mascot. Describe a member of the same youthful social-profile avatar family as the six references.
 
-Target the middle band between these failure modes:
+Keep the prompt in the middle band between these failures:
 - not a glamour beauty render
 - not a toy or vinyl figurine
 - not a low-poly clay mascot
 - not an anime chibi icon
+- not a sterile corporate contact-card avatar
 
 ## Non-negotiable style rules
 
@@ -48,15 +49,13 @@ Always preserve these traits unless the user explicitly asks to abandon style co
 - smooth youthful face with gentle planes
 - short-to-moderate neck and restrained shoulders
 - graphic hair masses with soft sculpted clumps, not realistic strands and not blocky low-poly slabs
-- clean solid pastel full-frame backdrop and no scene
+- clean solid pastel full-frame background and no scene
 - no watermark, ai-generated badge, logo, signature, text overlay, or platform ui chrome
 - soft low-contrast portrait lighting
-- minimal clothing detail and at most one or two readable accessories
+- minimal clothing detail and one or two readable accessories or personality accents
 - polished clean 3d character finish, not collectible toy plastic and not luxury beauty-shot finish
 
 ## Character conversion rules
-
-Convert the user description into this house style.
 
 - Preserve identity cues, but compress styling. Keep one garment cue and one primary accessory.
 - If the user gives many props, discard all but the clearest one or two.
@@ -66,19 +65,13 @@ Convert the user description into this house style.
 - If the user gives sunglasses, keep the eyewear as a bold graphic shape. Do not describe huge visible eyes through opaque lenses.
 - If the user gives no expression, default to calm confidence or mild friendly coolness.
 - If the user gives no clothing, default to a simple top or light jacket silhouette that does not compete with the face.
+- If the user gives no accessory, infer one subtle personality accent when it fits the subject and does not crowd the portrait. Good defaults include small hoop or stud earrings, a simple chain, a neat cap, a slim hair clip, a subtle earbud, a clean lapel pin, or lightly tinted glasses.
+- Keep inferred accents tasteful and limited. Prefer one strong accent or two very small accents. Never let accessories become costume props.
+- If hair color is unspecified, infer it from the character's energy, role, and overall mood instead of defaulting to black. Use [references/hair-guidance.md](references/hair-guidance.md).
+- If hairstyle is unspecified, infer a hairstyle that supports the subject's personality and presentation instead of repeating one default cut. Use [references/hair-guidance.md](references/hair-guidance.md).
+- Keep inferred hair colors inside a believable stylized range unless the user explicitly asks for fantasy colors.
 - Because these avatars are outward-facing, always suppress any watermark, ai-generation label, logo, signature, text, or platform overlay.
 - Prefer slight 3/4 view. Avoid dead-center front-facing symmetry unless the user explicitly asks for it.
-
-
-## Visual-reference rule
-
-If the target agent can accept a reference image, prefer using the bundled contact sheet in `assets/reference-sheet.jpeg` as a visual anchor. In that case:
-- keep the same prompt format
-- mention that the reference image defines the house style
-- do not restate every style cue if the prompt becomes too long
-- still keep the anti-drift exclusions for glamour, toy, chibi, and low-poly outcomes
-
-If the target agent is text-only, rely on the structural wording and anti-drift suffix.
 
 ## Important anti-drift rules
 
@@ -107,6 +100,8 @@ Prefer structural wording such as:
 - simplified facial planes
 - sculpted soft hair clumps
 - minimal outfit detail
+- subtle personality accent
+- mood-matched hair color and hairstyle
 - clean solid pastel full-frame background
 - polished character render
 
@@ -124,7 +119,7 @@ Write one compact English negative prompt line.
 Write 8-12 short bullets capturing the non-negotiable consistency rules.
 
 ### 4. anti-drift suffix
-Write one short English suffix line that can be appended verbatim when a weak model drifts toward toy, chibi, or glamour results.
+Write one short English suffix line that can be appended verbatim when a weak model drifts toward toy, chibi, glamour, or repetitive default hair.
 
 ### 5. chinese gloss
 If the user wrote in Chinese, add a concise Chinese explanation of the intended look.
@@ -137,12 +132,11 @@ Quietly verify all of the following:
 - Are the face proportions youthful and stylized without becoming childlike or bobblehead?
 - Are the eyes described as enlarged but still natural, not black button dots?
 - Is the hair described as soft sculpted clumps rather than realistic strands or hard low-poly blocks?
-- Is the outfit simplified enough that the face and accessory remain dominant?
+- Is the outfit simplified enough that the face remains dominant?
+- Is there one tasteful accessory or personality accent when the subject would otherwise feel too plain?
+- If hair was under-specified, does the chosen hair color support the character mood instead of defaulting to black?
+- If hairstyle was under-specified, does the chosen hairstyle support the character vibe instead of repeating the same generic male cut?
 - Does the prompt avoid scene detail and glamour language?
-- Does the negative prompt explicitly block realism, editorial fashion, toy/chibi drift, clay drift, low-poly drift, and watermark or text-overlay artifacts?
+- Does the negative prompt explicitly block realism, editorial fashion, toy/chibi drift, clay drift, low-poly drift, watermark or text-overlay artifacts, and repeated default-hair drift?
 
 If any answer is no, revise before output.
-
-## Refusal to drift
-
-If the user asks for a very different art direction, you may still help, but clearly state that the output below is optimized for the fixed reference style and will keep the bundled house look unless they ask to abandon consistency.
