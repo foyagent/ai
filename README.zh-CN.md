@@ -121,7 +121,7 @@
 
 #### 文档
 
-详见 [skills/cozy-pixel-prompter-v3/SKILL.md](skills/cozy-pixel-prompter-v3/SKILL.md)
+详见 [skills/cozy-pixel-prompter/SKILL.md](skills/cozy-pixel-prompter/SKILL.md)
 
 ### mutli-feishu-agent
 

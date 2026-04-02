@@ -121,7 +121,7 @@ Provide a character, sprite, equipment, prop, or avatar description to get compl
 
 #### Documentation
 
-See [skills/cozy-pixel-prompter-v3/SKILL.md](skills/cozy-pixel-prompter-v3/SKILL.md)
+See [skills/cozy-pixel-prompter/SKILL.md](skills/cozy-pixel-prompter/SKILL.md)
 
 ### mutli-feishu-agent
 
