@@ -100,6 +100,29 @@ Provide a character or person description to get a prompt that stays within the 
 
 See [skills/avatar-style-prompt/SKILL.md](skills/avatar-style-prompt/SKILL.md)
 
+### cozy-pixel-prompter
+
+Generate unified prompt packs for production-ready pixel-art game assets with a soft modern East-Asian neighborhood family style.
+
+**Usage**
+
+Provide a character, sprite, equipment, prop, or avatar description to get complete prompt packs including:
+- Positive prompt (English, with optional Chinese gloss)
+- Negative prompt (drift prevention)
+- Asset specs (canvas size, framing, alignment)
+- Style alignment notes
+
+**Features:**
+- Family-style consistency across all assets
+- Support for portraits, sprites, items, and avatars
+- Reference image editing with style preservation
+- Character differentiation for role-based designs
+- Production-ready output with transparent backgrounds
+
+#### Documentation
+
+See [skills/cozy-pixel-prompter-v3/SKILL.md](skills/cozy-pixel-prompter-v3/SKILL.md)
+
 ### mutli-feishu-agent
 
 Manage OpenClaw Feishu independent agents - create, activate, troubleshoot, and delete. Automatically generates agent IDs from names (Chinese → pinyin), handles configuration backup, account binding, and owner identification.

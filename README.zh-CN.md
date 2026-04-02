@@ -100,6 +100,29 @@
 
 详见 [skills/avatar-style-prompt/SKILL.md](skills/avatar-style-prompt/SKILL.md)
 
+### cozy-pixel-prompter
+
+生成统一风格的像素风游戏资产提示词包，专注于柔和现代东亚社区家庭风格。
+
+**使用方式**
+
+提供角色、精灵图、装备、道具或头像描述，获得完整的提示词包：
+- 正向提示词（英文，可选中文注释）
+- 负向提示词（防漂移）
+- 资产规格（画布尺寸、构图、对齐方式）
+- 风格对齐说明
+
+**功能：**
+- 所有资产保持统一的家庭风格
+- 支持立绘、精灵图、物品、头像等资产类型
+- 参考图编辑，保留原始风格
+- 角色差异化设计，确保不同职业/角色区分度
+- 生产就绪输出，透明背景可直接用于游戏
+
+#### 文档
+
+详见 [skills/cozy-pixel-prompter-v3/SKILL.md](skills/cozy-pixel-prompter-v3/SKILL.md)
+
 ### mutli-feishu-agent
 
 OpenClaw 飞书独立 Agent 管理工具 - 创建、激活、排查和删除。支持从名称自动生成 agent_id（中文→拼音），自动处理配置备份、账号绑定和 owner 标识收集。
